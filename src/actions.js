@@ -20,7 +20,15 @@ export async function fetchPetById(id) {
     `https://pets-react-query-backend.eapi.joincoded.com/pets/${id}`
   );
 
-  let pet = await response.json();
+  let pet;
+
+  try {
+    pet = await response.json();
+  } catch (error) {
+    console.error("Pet not found");
+    redirect("/pets");
+  }
+
   return pet;
 }
 
