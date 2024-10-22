@@ -1,11 +1,12 @@
-import pets from "@/data/pets";
-
 import PetsContainer from "./components/PetsContainer";
 
-function PetsPage() {
-  return (
-    <PetsContainer pets={pets} />
+async function PetsPage() {
+  const response = await fetch(
+    "https://pets-react-query-backend.eapi.joincoded.com/pets"
   );
-};
+  const pets = await response.json();
+
+  return <PetsContainer pets={pets} />;
+}
 
 export default PetsPage;
